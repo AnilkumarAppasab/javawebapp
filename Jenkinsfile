@@ -3,8 +3,6 @@ pipeline {
       label 'maven' 
   }
 	stages{
-         stage('CheckoutSCM'){
-
 	  stage ('Build'){
 	    steps{
 		sh '''
