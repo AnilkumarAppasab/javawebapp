@@ -1,29 +1,20 @@
 pipeline {
-  agent {
-      label 'maven' 
-  }
-	stages{
-	  stage ('Build'){
-	    steps{
-		sh '''
-			mvn clean install
-			'''
-		}
-	  }
-	  stage ('Unit Test'){
-	    steps{
-		  jacoco()
-		}
-	  }
-	  stage('testing'){
-	    steps{
-		  echo "THis is test job "
-		}
-		}
-      stage('Producton'){
-	    steps{
-		  echo "This is Prd"
-		  } 
-		  }
-	}
-}
+        agent none
+        stages {
+          stage("build & SonarQube analysis") {
+            agent any
+            steps {
+              withSonarQubeEnv('My SonarQube Server') {
+                sh 'mvn clean package sonar:sonar'
+              }
+            }
+          }
+          stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+          }
+        }
+      }
