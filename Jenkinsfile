@@ -19,7 +19,7 @@ stages{
 	  }
  stage("sonarqube"){
   steps{
-     withSonarQubeEnv('SonarQube-7.9.5'){
+     withSonarQubeEnv('sonarqube'){
 	     sh "mvn sonar:sonar"
   }
 }
