@@ -20,7 +20,7 @@ stages{
  stage("sonarqube"){
   steps{
      withSonarQubeEnv('sonarqube'){
-	     sh "mvn sonar:sonar"
+	     sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
   }
 }
 }
