@@ -3,7 +3,6 @@ pipeline {
       label 'maven' 
 }
 environment {
-       PATH = "$PATH:/usr/share/maven"
        NEXUS_VERSION = "nexus3"
        NEXUS_PROTOCOL = "http"
        NEXUS_URL = "3.109.209.246:8081"
@@ -20,8 +19,9 @@ stages{
 	  }
  stage("sonarqube"){
 steps{
+     def mvnHome = tool name: 'maven-3, type: 'maven'
      withSonarQubeEnv('SonarQube-7.9.5'){
-     sh "mvn sonar:sonar"
+	     sh "${mvnHome}/usr/share/maven sonar:sonar"
   }
 }
 }
