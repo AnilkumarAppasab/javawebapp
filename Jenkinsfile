@@ -21,7 +21,7 @@ stages{
   steps{
      def mvnHome = tool name: 'maven-3, type: 'maven'
      withSonarQubeEnv('SonarQube-7.9.5'){
-	     sh "${mvnHome}/usr/share/maven sonar:sonar"
+	     sh "${mvnHome}/usr/share/mvn sonar:sonar"
   }
 }
 }
