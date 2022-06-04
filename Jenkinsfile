@@ -3,7 +3,7 @@ pipeline {
       label 'maven' 
 }
 environment {
-       PATH = "$PATH:/usr/share/maven/bin"
+       PATH = "$PATH:/usr/share/maven"
        NEXUS_VERSION = "nexus3"
        NEXUS_PROTOCOL = "http"
        NEXUS_URL = "3.109.209.246:8081"
