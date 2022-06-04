@@ -20,10 +20,11 @@ stages{
  stage("sonarqube"){
 steps{
      withSonarQubeEnv('SonarQube-7.9.5'){
-     sh 'mvn clean packages'
-     }
+     sh "mvn sonar:sonar"
+  }
 }
 }
+
 
 stage("Publish to Nexus Repository Manager") {
             steps {
