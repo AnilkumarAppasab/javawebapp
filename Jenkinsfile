@@ -17,6 +17,13 @@ stages{
 			'''
 		}
 	  }
+ stage("sonarqube"){
+  steps{
+     withSonarQubeEnv('sonarqube'){
+	     sh "mvn sonar:sonar"
+     }
+  }
+ }
 
 	
 stage("Publish to Nexus Repository Manager") {
